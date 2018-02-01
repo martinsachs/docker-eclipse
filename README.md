@@ -1,10 +1,10 @@
 # docker-eclipse
 
-Eclipse v4.4.1 in a Docker container
+Eclipse v4.7.2 in a Docker container
 
 ## Requirements
 
-* Docker 1.2+ (should work fine on 1.0+ but I haven't tried)
+* Docker 17.09.0-ce (should work fine on 17.09.0-ce+ but I haven't tried)
 * An X11 socket
 
 ## Quickstart
@@ -17,8 +17,8 @@ within the container:
 
 ```sh
 # The image size is currently 1.131 GB, so go grab a coffee while Docker downloads it
-docker pull fgrehm/eclipse:v4.4.1
-L=$HOME/bin/eclipse && curl -sL https://github.com/fgrehm/docker-eclipse/raw/master/eclipse > $L && chmod +x $L
+docker pull martinsachs/docker-eclipse:4.7.2
+L=$HOME/bin/eclipse && curl -sL https://github.com/martinsachs/docker-eclipse/raw/master/eclipse > $L && chmod +x $L
 cd /path/to/java/project
 eclipse
 ```
@@ -35,13 +35,14 @@ host.
 For example:
 
 ```sh
+xhost +
 mkdir -p .eclipse-docker
 docker run -ti --rm \
            -e DISPLAY=$DISPLAY \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v `pwd`/.eclipse-docker:/home/developer \
            -v `pwd`:/workspace \
-           fgrehm/eclipse:v4.4.1
+           martinsachs/docker-eclipse:4.7.2
 ```
 
 ## Help! I started the container but I don't see the Eclipse screen
